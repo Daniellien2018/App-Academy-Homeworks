@@ -2,6 +2,8 @@ class Stack
     def initialize
       # create ivar to store stack here!
       @stack_array = []
+      @size = 0
+
     end
     def stack_array
       @stack_array
@@ -10,42 +12,65 @@ class Stack
     def push(el)
       # adds an element to the stack
       stack_array.push(el)
+      @size += 1
 
     end
 
     def pop
       # removes one element from the stack
       stack_array.pop
+      @size -= 1 unless size == 0
     end
 
     def peek
       # returns, but doesn't remove, the top element in the stack
       return stack_array[-1]
     end
+    def empty?
+      @size == 0 #this already returns a boolean, no need for true false
+    end
+
+    def inspect
+      "haha got u "
+      #something else
+    end
 end
+ms = Stack.new
+ms.push(1)
+ms.push(2)
+ms.push(4)
+p ms
 
 class Queue
-  def initialize
-    queue = []
+  def initialize 
+    @queue = []
+    @size = 0
   end
   def queue
     @queue
   end
 
   def enqueue(el)
-    queue.push(el)
+    @queue.push(el)
   end
 
   def dequeue
-    queue.shift
+    @queue.shift
   end
 
   def peek
-    return queue[0]
+    return @queue[0]
+  end
+
+  def empty?
+    @size == 0
+  end
+  def show
+      @queue.dup #do not want to expose underlying data structure
   end
 
 end
-
+#use attr reader
 class Map
   def initialize 
     map_array = []
@@ -83,3 +108,9 @@ class Map
   end
 
 end
+
+#p : calls inspect and adds a new line
+# puts: calls to_s and adds a new line
+#print: calls to_S , no new line
+
+
